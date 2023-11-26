@@ -58,11 +58,11 @@ option {
     padding: 0;
 }
 
-.produtoPersonalizado label {
+.produtoPersonalizado, .genero label {
     display: flex;
 }
 
-.produtoPersonalizado input {
+.produtoPersonalizado, .genero input {
     width: auto;
 }
 

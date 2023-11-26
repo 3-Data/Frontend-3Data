@@ -3,9 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <link rel="icon" type="image/x-icon" href="./imagens/3dataLogo.png">
     
+    <!-- COPIAR IMPORTAÇÃO DO BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="./estilo/estilo.css"/>
+    <link rel="stylesheet" type="text/css" href="./estilo/cadastroProdutos.css"/>
+    <title>3DATA • Cadastro de Cliente</title> 
+</head>
+
+<body onload="fillFields()">  
+    <!-- COPIAR CABEÇALHO -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+            <img src="./imagens/logo_branca.png" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <a class="nav-link active" aria-current="page" href="./Home.html">PRODUTOS</a>
+                            </div>
+                            <div class="col">
+                                <a class="nav-link" href="./Cadastro_produtos.html">FORNECEDORES</a>
+                            </div>
+                            <div class="col">
+                                <a class="nav-link" href="./Carrinho.html">
+                                    <img class="carrinho-header" src="./imagens/CARRINHO.png" alt="Carrinho de compras" />
+                                    CARRINHO
+                                </a>
+                            </div>
+                        </div>
+                    </div>              
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container container-titulo">
+        <div class="row">
+            <div class="col">
+                <h1 id="titulo">Cadastro</h1>
+                
+            </div>
+        </div>
+    </div>
+    <form method="get" id="cadastroCliente">
+        <div class="container container-titulo">
+            <div class="row">
+                <div class="col-md-6 dataInputs">
+                    <div class="col-md-6 photoInput">
+                        <h2>INSERIR FOTO</h2>
+                        <input type="file" id="productPhoto" hidden/>
+                        <label for="productPhoto">
+                            <img src="./imagens/adicionar imagem.png" id="photoInput">
+                        </label>
+                        
+                    </div>
+
+                    <input type="text" name="nome" id="nome" placeholder="NOME COMPLETO" />
+
+                    <input type="text" name="CPF" id="CPF" placeholder="CPF" />
+
+                    <input type="text" name="nome social" id="nomeSocial" placeholder="NOME SOCIAL" />
+
+                    <input type="text" name="email" id="email" placeholder="E-MAIL" />
+
+                    <input type="text" name="telefone" id="telefone" placeholder="TELEFONE" />
+
+                    <div class="container genero">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label><strong>SEXO</strong></label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>
+                                    <input type="radio" name="masculino" value="M" style="margin-right: 10px">
+                                    MASCULINO
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>
+                                    <input type="radio" name="feminino" value="F"  style="margin-right: 10px">
+                                    FEMININO 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="botao" type="button" onclick="storeProduct()">Salvar</button>
+
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
