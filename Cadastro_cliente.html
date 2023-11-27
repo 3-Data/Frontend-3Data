@@ -50,24 +50,24 @@
     <div class="container container-titulo">
         <div class="row">
             <div class="col">
-                <h1 id="titulo">Cadastro</h1>
-                
+                <h1 id="titulo">Cadastro de clientes</h1>                
             </div>
         </div>
     </div>
     <form method="get" id="cadastroCliente">
-        <div class="container container-titulo">
+        <div class="container" style="margin: 20px auto;">
             <div class="row">
                 <div class="col-md-6 dataInputs">
-                    <div class="col-md-6 photoInput">
+                    <div class="col-md-12 photoInput">
                         <h2>INSERIR FOTO</h2>
                         <input type="file" id="productPhoto" hidden/>
                         <label for="productPhoto">
                             <img src="./imagens/adicionar imagem.png" id="photoInput">
                         </label>
-                        
                     </div>
+                </div>
 
+                <div class="col-md-6 dataInputs">
                     <input type="text" name="nome" id="nome" placeholder="NOME COMPLETO" />
 
                     <input type="text" name="CPF" id="CPF" placeholder="CPF" />
@@ -99,7 +99,6 @@
                     </div>
                     
                     <button class="botao" type="button" onclick="storeProduct()">Salvar</button>
-
                 </div>
             </div>
         </div>

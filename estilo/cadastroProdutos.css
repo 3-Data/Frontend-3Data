@@ -58,11 +58,11 @@ option {
     padding: 0;
 }
 
-.produtoPersonalizado, .genero label {
+.produtoPersonalizado label, .genero label {
     display: flex;
 }
 
-.produtoPersonalizado, .genero input {
+.produtoPersonalizado label, .genero input {
     width: auto;
 }
 
@@ -78,4 +78,8 @@ option {
     padding: 10px 0px;
     border-radius: 20px;
     border: none;
+}
+
+.produtoPersonalizado input[type="radio"] {
+    width: auto;
 }
