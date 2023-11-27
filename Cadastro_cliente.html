@@ -60,8 +60,8 @@
                 <div class="col-md-6 dataInputs">
                     <div class="col-md-12 photoInput">
                         <h2>INSERIR FOTO</h2>
-                        <input type="file" id="productPhoto" hidden/>
-                        <label for="productPhoto">
+                        <input type="file" id="customerPhoto" hidden/>
+                        <label for="customerPhoto">
                             <img src="./imagens/adicionar imagem.png" id="photoInput">
                         </label>
                     </div>
@@ -70,13 +70,13 @@
                 <div class="col-md-6 dataInputs">
                     <input type="text" name="nome" id="nome" placeholder="NOME COMPLETO" />
 
-                    <input type="text" name="CPF" id="CPF" placeholder="CPF" />
+                    <input type="text" name="CPF" id="CPF" placeholder="CPF" onkeyup="cpfMask()" maxlength="11"/>
 
-                    <input type="text" name="nome social" id="nomeSocial" placeholder="NOME SOCIAL" />
+                    <input type="text" name="nome social" id="nomeSocial" placeholder="NOME SOCIAL (opcional)" />
 
-                    <input type="text" name="email" id="email" placeholder="E-MAIL" />
+                    <input type="email" name="email" id="email" placeholder="E-MAIL" />
 
-                    <input type="text" name="telefone" id="telefone" placeholder="TELEFONE" />
+                    <input type="tel" name="telefone" id="telefone" placeholder="TELEFONE" maxlength="15" onkeyup="handlePhone(event)" />
 
                     <div class="container genero">
                         <div class="row">
@@ -85,23 +85,27 @@
                             </div>
                             <div class="col-md-12">
                                 <label>
-                                    <input type="radio" name="masculino" value="M" style="margin-right: 10px">
+                                    <input type="radio" name="sexo" value="M" style="margin-right: 10px">
                                     MASCULINO
                                 </label>
                             </div>
                             <div class="col-md-12">
                                 <label>
-                                    <input type="radio" name="feminino" value="F"  style="margin-right: 10px">
+                                    <input type="radio" name="sexo" value="F"  style="margin-right: 10px">
                                     FEMININO 
                                 </label>
                             </div>
                         </div>
                     </div>
+
+                    <input type="date" name="dataNascimento" id="dataNascimento" placeholder="Data de nascimento" />
                     
-                    <button class="botao" type="button" onclick="storeProduct()">Salvar</button>
+                    <button class="botao" type="button" onclick="storeCustomer()">Salvar</button>
                 </div>
             </div>
         </div>
     </form>
+    <script src="./js/cadastroCliente.js"></script>
+    </script>
 </body>
 </html>

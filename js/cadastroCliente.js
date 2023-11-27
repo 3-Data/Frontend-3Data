@@ -3,7 +3,7 @@ let customerDocument;
 
 async function getCustomer(document) {
   try {
-    let response = await fetch(`${apiUrl}/customer?document=${document}`);
+    let response = await fetch(`${apiUrl}/customers?document=${document}`);
     
     if (!response.ok) {
       throw new Error('Erro ao buscar os dados do cliente');
@@ -16,7 +16,7 @@ async function getCustomer(document) {
 
 async function postCustomer (body) {
   try {
-    let response = await fetch(`${apiUrl}/customer`, {
+    let response = await fetch(`${apiUrl}/customers`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -68,35 +68,33 @@ function getCustomerPhoto () {
 
   if (input.files && input.files[0]) {
     const arquivo = input.files[0];
-    return [arquivo.name];
+    return arquivo.name;
   } else {
-    return [];
+    return null;
   }
 }
 
 function cleanFields () {
-  document.getElementById('name').value = "";
-  document.getElementById('document').value = "";
-  document.getElementById('socialName').value = "";
+  document.getElementById('nome').value = "";
+  document.getElementById('CPF').value = "";
+  document.getElementById('nomeSocial').value = "";
   document.getElementById('email').value = "";
-  document.getElementById('image').value = "";
-  document.getElementById('telephone').value = "";
-  document.getElementById('gender').value = "";
-  document.getElementById('birthDate').value = "";
+  document.getElementById('telefone').value = "";
+  document.getElementById('dataNascimento').value = "";
   customerDocument = "";
 }
 
 async function storeCustomer () {
   try {
-    const name = document.getElementById('name').value;
-    const document = document.getElementById('document').value;
-    const socialName = document.getElementById('socialName').value;
+    const name = document.getElementById('nome').value;
+    const documentValue = document.getElementById('CPF').value;
+    const socialName = document.getElementById('nomeSocial').value;
     const email = document.getElementById('email').value;
-    const telephone = document.getElementById('telephone').value;
-    const gender = document.getElementById('gender').value;
-    const birthDate = document.getElementById('birthDate').value;
-
-    if (!document)
+    const telephone = document.getElementById('telefone').value;
+    const gender = document.querySelector('input[name="sexo"]:checked')?.value;
+    const birthDate = document.getElementById('dataNascimento').value;
+    
+    if (!documentValue)
       return window.alert("Preencha o CPF/CNPJ do cliente");
 
     if (!name)
@@ -111,12 +109,12 @@ async function storeCustomer () {
     const image = getCustomerPhoto();
 
     const body = {
+      document: documentValue,
       name,
-      document,
       socialName,
       email,
       image,
-      telephone,
+      telephone: telephone.replace(/\D/g, ''),
       gender,
       birthDate,
     }
@@ -135,12 +133,30 @@ async function fillFieldsWithDocument (document) {
     return window.alert("Nnehum cliente registrado com esse documento.")
 
   customerDocument = customerData.id;
-  document.getElementById('name').value = customerData.name;
-  document.getElementById('document').value = customerData.document;
-  document.getElementById('socialName').value = customerData.socialName;
+  
+  document.getElementById('nome').value = customerData.name;
+  document.getElementById('CPF').value = customerData.document;
+  document.getElementById('nomeSocial').value = customerData.socialName;
   document.getElementById('email').value = customerData.email;
-  document.getElementById('image').value = customerData.image;
-  document.getElementById('telephone').value = customerData.telephone;
-  document.getElementById('gender').value = customerData.gender;
-  document.getElementById('birthDate').value = customerData.birthDate;
+  document.getElementById('telefone').value = customerData.telephone;
+  document.getElementById('dataNascimento').value = customerData.birthDate;
+}
+
+const handlePhone = (event) => {
+  let input = event.target
+  input.value = phoneMask(input.value)
+}
+
+const phoneMask = (value) => {
+  if (!value) return ""
+  value = value.replace(/\D/g,'')
+  value = value.replace(/(\d{2})(\d)/,"($1) $2")
+  value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+  return value
+}
+
+const cpfMask = () => {
+  const updatedValue = document.getElementById('CPF').value.replace( /(\d{3})(\d{3})(\d{3})(\d{2})/g, '$1.$2.$3-$4' );
+
+  document.getElementById('CPF').value = updatedValue
 }
